@@ -83,6 +83,11 @@ db.serialize(() => {
 });
 
 // =====================
+
+
+app.get("/", (req,res) => {
+  res.send("tracking server is work"); 
+})
 // Endpoint لتقديم ملف tracking.js الخاص بالعميل
 // =====================
 app.get("/tracking.js", (req, res) => {
