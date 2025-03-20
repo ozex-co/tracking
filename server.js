@@ -189,6 +189,7 @@ app.post("/track-visit", express.text(), (req, res) => {
   let data;
   try {
     data = JSON.parse(req.body);
+    console.log(data);
   } catch (e) {
     return res.status(400).json({ error: "Invalid JSON" });
   }
@@ -264,6 +265,7 @@ app.post("/track-duration", express.text(), (req, res) => {
 // Endpoint التحليلات الأساسية (analytics)
 // =====================
 app.get("/analytics", (req, res) => {
+  console.log("طلب التحلايلات الاساسيه");
   const { start_date, end_date } = req.query;
   let dateFilter = "";
   let params = [];
@@ -299,6 +301,7 @@ app.get("/analytics", (req, res) => {
 // Endpoint التحليلات الموسعة (extended-analytics)
 // =====================
 app.get("/extended-analytics", (req, res) => {
+  console.log("طلب التحلايلات الموسعه");
   const { start_date, end_date } = req.query;
   let dateFilter = "";
   let params = [];
