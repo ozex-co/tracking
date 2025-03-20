@@ -6,21 +6,21 @@ const requestIp = require("request-ip");
 const helmet = require("helmet");
 const cron = require("node-cron");
 const nodemailer = require("nodemailer");
-const cors = require("cors"); // إضافة مكتبة cors
 
 const app = express();
 
-// استخدام helmet لتعزيز أمان التطبيق
+
+// استخدام helmet لتعزيز أمان التطبي
 app.use(helmet());
 
-// تفعيل CORS للسماح بالطلبات من أي نطاق
-app.use(cors());
+// في بيئة التطوير نسمح لجميع الأصول لتفادي مشاكل CORS
 
 // إعداد JSON
 app.use(express.json());
 
-// تقديم الملفات الثابتة من مجلد public
+// تقديم الملفات الثابتة من مجلد public مع إضافة رأس CORS لجميع الطلبات
 app.use(express.static("public"));
+
 
 // Middleware للحصول على IP العميل
 app.use(requestIp.mw());
@@ -73,10 +73,10 @@ db.serialize(() => {
 
 // =====================
 
-app.get("/", (req, res) => {
-  res.send("tracking server is work");
-});
 
+app.get("/", (req,res) => {
+  res.send("tracking server is work"); 
+})
 // Endpoint لتقديم ملف tracking.js الخاص بالعميل
 // =====================
 app.get("/tracking.js", (req, res) => {
