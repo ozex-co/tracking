@@ -6,11 +6,15 @@ const requestIp = require("request-ip");
 const helmet = require("helmet");
 const cron = require("node-cron");
 const nodemailer = require("nodemailer");
+const cors = require("cors"); // إضافة مكتبة cors
 
 const app = express();
 
 // استخدام helmet لتعزيز أمان التطبيق
 app.use(helmet());
+
+// تفعيل CORS للسماح بالطلبات من أي نطاق
+app.use(cors());
 
 // إعداد JSON
 app.use(express.json());
@@ -69,9 +73,9 @@ db.serialize(() => {
 
 // =====================
 
-app.get("/", (req,res) => {
-  res.send("tracking server is work"); 
-})
+app.get("/", (req, res) => {
+  res.send("tracking server is work");
+});
 
 // Endpoint لتقديم ملف tracking.js الخاص بالعميل
 // =====================
