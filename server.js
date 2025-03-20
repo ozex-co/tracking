@@ -186,6 +186,7 @@ app.post("/track-action", express.text(), (req, res) => {
 // Endpoint لتسجيل الزيارات (track-visit)
 // =====================
 app.post("/track-visit", express.text(), (req, res) => {
+  console.log("اضافه بيينات جديده ");
   let data;
   try {
     data = JSON.parse(req.body);
