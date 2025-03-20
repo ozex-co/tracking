@@ -14,10 +14,7 @@ const app = express();
 app.use(helmet());
 
 // تفعيل CORS للسماح بالطلبات من أي نطاق
-app.use(cors({
-  origin: "https://ozex.site", // السماح بالطلبات القادمة من النطاق الأساسي
-  credentials: true
-}));
+app.use(cors());
 
 // إعداد JSON
 app.use(express.json());
