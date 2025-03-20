@@ -1,6 +1,5 @@
 const express = require("express");
 const sqlite3 = require("sqlite3").verbose();
-const cors = require("cors");
 const geoip = require("geoip-lite");
 const path = require("path");
 const requestIp = require("request-ip");
@@ -9,28 +8,18 @@ const cron = require("node-cron");
 const nodemailer = require("nodemailer");
 
 const app = express();
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  next();
-});
+
 
 // استخدام helmet لتعزيز أمان التطبي
 app.use(helmet());
 
 // في بيئة التطوير نسمح لجميع الأصول لتفادي مشاكل CORS
-app.use(cors({
-  origin: '*'
-}));
 
 // إعداد JSON
 app.use(express.json());
 
 // تقديم الملفات الثابتة من مجلد public مع إضافة رأس CORS لجميع الطلبات
-app.use(express.static("public", {
-  setHeaders: (res, path, stat) => {
-    res.set("Access-Control-Allow-Origin", "*");
-  }
-}));
+app.use(express.static("public"));
 
 
 // Middleware للحصول على IP العميل
