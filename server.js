@@ -9,18 +9,14 @@ const nodemailer = require("nodemailer");
 
 const app = express();
 
-
-// استخدام helmet لتعزيز أمان التطبي
+// استخدام helmet لتعزيز أمان التطبيق
 app.use(helmet());
-
-// في بيئة التطوير نسمح لجميع الأصول لتفادي مشاكل CORS
 
 // إعداد JSON
 app.use(express.json());
 
-// تقديم الملفات الثابتة من مجلد public مع إضافة رأس CORS لجميع الطلبات
+// تقديم الملفات الثابتة من مجلد public
 app.use(express.static("public"));
-
 
 // Middleware للحصول على IP العميل
 app.use(requestIp.mw());
@@ -73,10 +69,10 @@ db.serialize(() => {
 
 // =====================
 
-
 app.get("/", (req,res) => {
   res.send("tracking server is work"); 
 })
+
 // Endpoint لتقديم ملف tracking.js الخاص بالعميل
 // =====================
 app.get("/tracking.js", (req, res) => {
